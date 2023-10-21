@@ -13,5 +13,6 @@
 
 int main(void) {
 	puts("【色当てゲーム】");
+	puts("ゲームをはじめてください");
 	return EXIT_SUCCESS;
 }
