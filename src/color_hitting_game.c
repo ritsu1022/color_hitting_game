@@ -22,5 +22,10 @@ int main(void) {
 	puts("コンピュータが問題を出しました。");
 	puts("予想を入力してください。");
 
+	char t1 = getchar();
+	char t2 = getchar();
+	char t3 = getchar();
+	char t4 = getchar();
+
 	return EXIT_SUCCESS;
 }
