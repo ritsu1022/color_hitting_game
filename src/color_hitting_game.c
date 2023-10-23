@@ -19,6 +19,8 @@ int main(void) {
 
 	puts("【色当てゲーム】");
 	puts("ゲームをはじめてください");
+	puts("コンピュータが問題を出しました。");
+	puts("予想を入力してください。");
 
 	return EXIT_SUCCESS;
 }
