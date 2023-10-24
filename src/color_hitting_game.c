@@ -27,5 +27,10 @@ int main(void) {
 	char t3 = getchar();
 	char t4 = getchar();
 
+	putchar(t1);
+	putchar(t2);
+	putchar(t3);
+	putchar(t4);
+
 	return EXIT_SUCCESS;
 }
