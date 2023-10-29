@@ -12,6 +12,8 @@
 #include <stdlib.h>
 
 int main(void) {
+	setvbuf(stdout, NULL, _IONBF, 0);
+
 	char q1 = 'R';
 	char q2 = 'G';
 	char q3 = 'B';
