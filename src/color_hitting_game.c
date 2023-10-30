@@ -34,18 +34,12 @@ int main(void) {
 	putchar(t3);
 	putchar(t4);
 
-	if(q1 == t1) {
-		puts("合っています");
-	}
-	if(q2 == t2) {
-		puts("合っています");
-	}
-	if(q3 == t3) {
-		puts("合っています");
-	}
-	if(q4 == t4) {
-		puts("合っています");
-	}
-
+	int matched = 0;
+	if(q1 == t1) { matched += 1; }
+	if(q2 == t2) { matched += 1; }
+	if(q3 == t3) { matched += 1; }
+	if(q4 == t4) { matched += 1; }
+	puts("結果");
+	printf("%d コ合っています。\n", matched );
 	return EXIT_SUCCESS;
 }
