@@ -11,6 +11,19 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char get_trial_char(void) {
+	char ch;
+	for (;;) {
+		ch = getchar();
+		if (ch == 'R') { return ch; }
+		if (ch == 'G') { return ch; }
+		if (ch == 'B') { return ch; }
+		if (ch == 'Y') { return ch; }
+		if (ch == 'M') { return ch; }
+		if (ch == 'C') { return ch; }
+	}
+	return ch;
+}
 void discard_inputs(void) {
 	for(;getchar() != '\n';) {
 		/* do nothing */
