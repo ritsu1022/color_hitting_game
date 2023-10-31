@@ -11,6 +11,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void discard_inputs(void) {
+	for(;getchar() != '\n';) {
+		/* do nothing */
+	}
+}
 int main(void) {
 	setvbuf(stdout, NULL, _IONBF, 0);
 
@@ -29,6 +34,7 @@ int main(void) {
 		char t2 = getchar();
 		char t3 = getchar();
 		char t4 = getchar();
+		discard_inputs();
 
 		putchar(t1);
 		putchar(t2);
