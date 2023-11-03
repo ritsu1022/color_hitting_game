@@ -15,12 +15,10 @@ char get_trial_char(void) {
 	char ch;
 	for (;;) {
 		ch = getchar();
-		if (ch == 'R') { return ch; }
-		if (ch == 'G') { return ch; }
-		if (ch == 'B') { return ch; }
-		if (ch == 'Y') { return ch; }
-		if (ch == 'M') { return ch; }
-		if (ch == 'C') { return ch; }
+		if (ch == 'R' || ch == 'G'|| ch == 'B'
+				|| ch == 'Y' || ch == 'M'|| ch == 'C') {
+			return ch;
+		}
 	}
 	return ch;
 }
@@ -43,10 +41,10 @@ int main(void) {
 	for(int i = 0; i < 10; i++) {
 		printf("予想を入力してください。%d 回目\n", i + 1);
 
-		char t1 = getchar();
-		char t2 = getchar();
-		char t3 = getchar();
-		char t4 = getchar();
+		char t1 = get_trial_char();
+		char t2 = get_trial_char();
+		char t3 = get_trial_char();
+		char t4 = get_trial_char();
 		discard_inputs();
 
 		putchar(t1);
