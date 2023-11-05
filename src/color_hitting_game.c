@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define QSIZE 4
+
 char get_trial_char(void) {
 	char ch;
 	for (;;) {
@@ -28,6 +30,7 @@ void discard_inputs(void) {
 	}
 }
 int main(void) {
+	int player_win = 0;
 	setvbuf(stdout, NULL, _IONBF, 0);
 
 	char q1 = 'R';
@@ -59,6 +62,15 @@ int main(void) {
 		if(q4 == t4) { matched += 1; }
 		puts("結果");
 		printf("%d コ合っています。\n", matched );
+		if (matched == QSIZE) {
+			player_win = 1;
+			break;
+		}
+	}
+	if (player_win) {
+		puts("あなたの勝ちです。");
+	} else {
+		puts ("残念！出題者の勝ちです。");
 	}
 	return EXIT_SUCCESS;
 }
