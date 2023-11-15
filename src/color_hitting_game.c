@@ -54,9 +54,10 @@ void color_hitting_game(void) {
 
 	chg_display_title();
 	chg_make_question();
-	puts("コンピュータが問題を出しました。");
-	for(int i = 0; i < 10; i++) {
-		printf("予想を入力してください。%d 回目\n", i + 1);
+	const int max_turns = 10;
+	for(int turn = 0; turn < max_turns; turn++) {
+		printf("予想を入力してください。%d 回目\n", turn + 1);
+
 
 		char t1 = get_trial_char();
 		char t2 = get_trial_char();
