@@ -36,15 +36,24 @@ void chg_display_title(void) {
 	puts("ゲームをはじめてください");
 }
 
+static char q1;
+static char q2;
+static char q3;
+static char q4;
+
+void chg_make_question(void) {
+	q1 = 'R';
+	q2 = 'G';
+	q3 = 'B';
+	q4 = 'Y';
+	puts ("コンピュータが問題を出しました。");
+}
+
 void color_hitting_game(void) {
 	int player_win = 0;
 
-	char q1 = 'R';
-	char q2 = 'G';
-	char q3 = 'B';
-	char q4 = 'Y';
-
 	chg_display_title();
+	chg_make_question();
 	puts("コンピュータが問題を出しました。");
 	for(int i = 0; i < 10; i++) {
 		printf("予想を入力してください。%d 回目\n", i + 1);
