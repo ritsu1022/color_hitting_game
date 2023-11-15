@@ -31,6 +31,11 @@ void discard_inputs(void) {
 	}
 }
 
+void chg_display_title(void) {
+	puts("【色当てゲーム】");
+	puts("ゲームをはじめてください");
+}
+
 void color_hitting_game(void) {
 	int player_win = 0;
 
@@ -39,8 +44,7 @@ void color_hitting_game(void) {
 	char q3 = 'B';
 	char q4 = 'Y';
 
-	puts("【色当てゲーム】");
-	puts("ゲームをはじめてください");
+	chg_display_title();
 	puts("コンピュータが問題を出しました。");
 	for(int i = 0; i < 10; i++) {
 		printf("予想を入力してください。%d 回目\n", i + 1);
