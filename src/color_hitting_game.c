@@ -36,16 +36,13 @@ void chg_display_title(void) {
 	puts("ゲームをはじめてください");
 }
 
-static char q1;
-static char q2;
-static char q3;
-static char q4;
+static char qx[QSIZE];
 
 void chg_make_question(void) {
-	q1 = 'R';
-	q2 = 'G';
-	q3 = 'B';
-	q4 = 'Y';
+	qx[0] = 'R';
+	qx[1] = 'G';
+	qx[2] = 'B';
+	qx[3] = 'Y';
 	puts ("コンピュータが問題を出しました。");
 }
 
@@ -63,10 +60,10 @@ int chg_play_turn(void) {
 	putchar(t3);
 	putchar(t4);
 
-	if (q1 == t1) { matched += 1; }
-	if (q2 == t2) { matched += 1; }
-	if (q3 == t3) { matched += 1; }
-	if (q4 == t4) { matched += 1; }
+	if (qx[0] == t1) { matched += 1; }
+	if (qx[1] == t2) { matched += 1; }
+	if (qx[2] == t3) { matched += 1; }
+	if (qx[3] == t4) { matched += 1; }
 
 	return matched;
 }
