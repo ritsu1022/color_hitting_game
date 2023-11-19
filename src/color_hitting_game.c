@@ -81,6 +81,14 @@ int chg_check_result(int matched) {
 	}
 }
 
+void chg_display_win_or_lose(int player_win) {
+	if(player_win) {
+		puts("あなたの勝ちです。");
+	} else {
+		puts("残念！出題者の勝ちです。");
+	}
+}
+
 void color_hitting_game(void) {
 	int player_win = 0;
 
@@ -99,11 +107,7 @@ void color_hitting_game(void) {
 		}
 	}
 
-	if (player_win) {
-		puts("あなたの勝ちです。");
-	} else {
-		puts ("残念！出題者の勝ちです。");
-	}
+	chg_display_win_or_lose(player_win);
 	return;
 }
 
