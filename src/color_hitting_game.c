@@ -71,6 +71,16 @@ int chg_play_turn(void) {
 	return matched;
 }
 
+int chg_check_result(int matched) {
+	puts("結果");
+	printf("%d コ合っています。\n", matched );
+	if (matched == QSIZE) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
 void color_hitting_game(void) {
 	int player_win = 0;
 
@@ -83,13 +93,12 @@ void color_hitting_game(void) {
 		int matched = 0;
 		matched = chg_play_turn();
 
-		puts("結果");
-		printf("%d コ合っています。\n", matched );
-		if (matched == QSIZE) {
-			player_win = 1;
+		player_win = chg_check_result(matched);
+		if(player_win) {
 			break;
 		}
 	}
+
 	if (player_win) {
 		puts("あなたの勝ちです。");
 	} else {
