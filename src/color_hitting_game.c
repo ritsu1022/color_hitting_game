@@ -49,6 +49,28 @@ void chg_make_question(void) {
 	puts ("コンピュータが問題を出しました。");
 }
 
+int chg_play_turn(void) {
+	int matched = 0;
+
+	char t1 = get_trial_char();
+	char t2 = get_trial_char();
+	char t3 = get_trial_char();
+	char t4 = get_trial_char();
+	discard_inputs();
+
+	putchar(t1);
+	putchar(t2);
+	putchar(t3);
+	putchar(t4);
+
+	if (q1 == t1) { matched += 1; }
+	if (q2 == t2) { matched += 1; }
+	if (q3 == t3) { matched += 1; }
+	if (q4 == t4) { matched += 1; }
+
+	return matched;
+}
+
 void color_hitting_game(void) {
 	int player_win = 0;
 
@@ -58,23 +80,9 @@ void color_hitting_game(void) {
 	for(int turn = 0; turn < max_turns; turn++) {
 		printf("予想を入力してください。%d 回目\n", turn + 1);
 
-
-		char t1 = get_trial_char();
-		char t2 = get_trial_char();
-		char t3 = get_trial_char();
-		char t4 = get_trial_char();
-		discard_inputs();
-
-		putchar(t1);
-		putchar(t2);
-		putchar(t3);
-		putchar(t4);
-
 		int matched = 0;
-		if(q1 == t1) { matched += 1; }
-		if(q2 == t2) { matched += 1; }
-		if(q3 == t3) { matched += 1; }
-		if(q4 == t4) { matched += 1; }
+		matched = chg_play_turn();
+
 		puts("結果");
 		printf("%d コ合っています。\n", matched );
 		if (matched == QSIZE) {
