@@ -50,21 +50,20 @@ int chg_play_turn(void) {
 	int matched = 0;
 
 	char tx[QSIZE];
-	tx[0] = get_trial_char();
-	tx[1] = get_trial_char();
-	tx[2] = get_trial_char();
-	tx[3] = get_trial_char();
+	for(int i = 0; i < QSIZE; i++) {
+		tx[i] = get_trial_char();
+	}
 	discard_inputs();
 
-	putchar(tx[0]);
-	putchar(tx[1]);
-	putchar(tx[2]);
-	putchar(tx[3]);
+	for(int i = 0; i < QSIZE; i++) {
+		putchar(tx[i]);
+	}
 
-	if (qx[0] == tx[0]) { matched += 1; }
-	if (qx[1] == tx[1]) { matched += 1; }
-	if (qx[2] == tx[2]) { matched += 1; }
-	if (qx[3] == tx[3]) { matched += 1; }
+	for(int i = 0; i < QSIZE; i++) {
+		if (qx[i] == tx[i]) {
+			matched += 1;
+		}
+	}
 
 	return matched;
 }
