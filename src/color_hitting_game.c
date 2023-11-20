@@ -32,7 +32,7 @@ char get_trial_char(void) {
 }
 
 void discard_inputs(void) {
-	for(;getchar() != '\n';) {
+	for(; getchar() != '\n';) {
 		/* do nothing */
 	}
 }
@@ -41,8 +41,6 @@ void chg_display_title(void) {
 	puts("【色当てゲーム】");
 	puts("ゲームをはじめてください");
 }
-
-static char qx[QSIZE];
 
 void chg_make_question(void) {
 	for (int i = 0; i < QSIZE; i++) {
