@@ -13,14 +13,19 @@
 #include <time.h>
 
 #define QSIZE 4
+static char qx[QSIZE];
+
+static const char qseeds[] = { 'R', 'G', 'B', 'Y', 'M', 'C' };
+static const int num_of_colors = sizeof(qseeds)/ sizeof(qseeds[0]);
 
 char get_trial_char(void) {
 	char ch;
 	for (;;) {
 		ch = getchar();
-		if (ch == 'R' || ch == 'G'|| ch == 'B'
-				|| ch == 'Y' || ch == 'M'|| ch == 'C') {
-			return ch;
+		for (int i = 0; i < num_of_colors; i++) {
+			if(ch == qseeds[i]) {
+				return ch;
+			}
 		}
 	}
 	return ch;
@@ -38,8 +43,6 @@ void chg_display_title(void) {
 }
 
 static char qx[QSIZE];
-static const char qseeds[] = { 'R', 'G', 'B', 'Y', 'M', 'C' };
-static const int num_of_colors = sizeof(qseeds)/ sizeof(qseeds[0]);
 
 void chg_make_question(void) {
 	for (int i = 0; i < QSIZE; i++) {
