@@ -61,8 +61,9 @@ void chg_make_question(void) {
 
 	puts ("コンピュータが問題を出しました。");
 
-	/* 動作確認のためにしばらくは問題を表示する */
+#ifdef DEBUG
 	chg_display_question();
+#endif // DEBUG
 }
 
 int chg_play_turn(void) {
