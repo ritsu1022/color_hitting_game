@@ -154,7 +154,7 @@ int chg_play_turn(void) {
 	}
 
 	for(int i = 0; i < QSIZE; i++) {
-		if (qx[i] == tx[i]) {
+		if (qx[i] == toupper(tx[i])) {
 			matched += 1;
 		}
 	}
