@@ -141,14 +141,24 @@ int chg_play_turn(void) {
 
 	char tx[QSIZE+10];
 	const int size = sizeof(tx);
-	chg_input_answer(tx, size);
-	puts(tx);
+	while(true) {
+		chg_input_answer(tx, size);
+
+		if (chg_input_length_is_valid(tx)
+			&& chg_input_chars_is_valid(tx)
+			&& chg_input_chars_is_no_dup(tx)) {
+			break;
+		} else {
+			puts("再入力してください");
+		}
+	}
 
 	for(int i = 0; i < QSIZE; i++) {
 		if (qx[i] == tx[i]) {
 			matched += 1;
 		}
 	}
+
 	return matched;
 }
 
