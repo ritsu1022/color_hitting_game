@@ -66,25 +66,29 @@ void chg_make_question(void) {
 #endif // DEBUG
 }
 
+void chg_input_answer(char buf[], int size) {
+	char* cr;
+
+	fgets(buf, size, stdin);
+	cr = strchr(buf, '\n');
+	if(cr != NULL) {
+		*cr = '\0';
+	}
+}
+
 int chg_play_turn(void) {
 	int matched = 0;
 
-	char tx[QSIZE];
-	for(int i = 0; i < QSIZE; i++) {
-		tx[i] = get_trial_char();
-	}
-	discard_inputs();
-
-	for(int i = 0; i < QSIZE; i++) {
-		putchar(tx[i]);
-	}
+	char tx[QSIZE+10];
+	const int size = sizeof(tx);
+	chg_input_answer(tx, size);
+	puts(tx);
 
 	for(int i = 0; i < QSIZE; i++) {
 		if (qx[i] == tx[i]) {
 			matched += 1;
 		}
 	}
-
 	return matched;
 }
 
