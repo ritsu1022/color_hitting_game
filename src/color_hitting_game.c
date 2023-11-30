@@ -126,6 +126,14 @@ bool chg_input_length_is_valid(const char* buf) {
 	return true;
 }
 
+bool chg_input_is_quit(const char* buf) {
+	if(toupper(buf[0]) == 'Q') {
+		return true;
+	} else {
+		return false;
+	}
+}
+
 void chg_input_answer(char buf[], int size) {
 	char* cr;
 
