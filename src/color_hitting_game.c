@@ -149,17 +149,22 @@ enum chg_game_state {
 };
 
 enum chg_game_state chg_check_result(const char tx[]) {
-	int matched = 0;
+	int hit = 0;
+	int blow = 0;
 
 	for (int i = 0; i < QSIZE; i++) {
-		if (qx[i] == toupper(tx[i])) {
-			matched += 1;
+		char txc = toupper(tx[i]);
+		if (qx[i] == txc) {
+			hit += 1;
+		} else {
+			if(memchr(qx, txc, QSIZE) != NULL) {
+				blow += 1;
+			}
 		}
 	}
 
-	puts("結果");
-	printf("%d コ合っています。\n", matched );
-	if (matched == QSIZE) {
+	printf("結果: %d ヒット、 %d ブロー。\n", hit, blow );
+	if (hit == QSIZE) {
 		return chg_state_PLAYER_WIN;
 	} else {
 		return chg_state_PLAYING;
