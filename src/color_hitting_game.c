@@ -63,6 +63,48 @@ void chg_display_blow_pin(void) {
 	printf("%s ", CHG_BLOW_CHAR);
 }
 
+const char* CHG_RED_MARK        = "\033[41m R \033[0m";
+const char* CHG_GREEN_MARK      = "\033[42m G \033[0m";
+const char* CHG_YELLOW_MARK     = "\033[43m Y \033[0m";
+const char* CHG_BLUE_MARK       = "\033[44m B \033[0m";
+const char* CHG_MAGENTA_MARK    = "\033[45m M \033[0m";
+const char* CHG_CYAN_MARK       = "\033[46m C \033[0m";
+const char* CHG_OTHER_MARK      = "\033[47m _ \033[0m";
+
+const char* chg_color_to_mark(const char color) {
+	const char* mark;
+	switch (color) {
+	case 'R':
+		mark = CHG_RED_MARK;
+		break;
+	case 'G':
+		mark = CHG_GREEN_MARK;
+		break;
+	case 'Y':
+		mark = CHG_YELLOW_MARK;
+		break;
+	case 'B':
+		mark = CHG_BLUE_MARK;
+		break;
+	case 'M':
+		mark = CHG_MAGENTA_MARK;
+		break;
+	case 'C':
+		mark = CHG_CYAN_MARK;
+		break;
+	default:
+		mark = CHG_OTHER_MARK;
+		break;
+	}
+	return mark;
+}
+
+void chg_display_trial(const char tx[]) {
+	for(int i = 0; i < QSIZE; i++) {
+		printf("%s ", chg_color_to_mark(toupper(tx[i])));
+	}
+}
+
 void chg_make_question(void) {
 	char wk_qseeds[num_of_colors];
 	memcpy(wk_qseeds, qseeds, sizeof(qseeds));
@@ -207,7 +249,7 @@ enum chg_game_state chg_play_turn(void) {
 			puts("再入力してください");
 		}
 	}
-
+	chg_display_trial(tx);
 	return chg_check_result(tx);
 }
 
