@@ -40,7 +40,21 @@ void discard_inputs(void) {
 	}
 }
 
+enum clear_option {
+	AFTER_CURSOR = 0, BEFORE_CURSOR = 1, FULL_SCREEN = 2
+};
+
+void clear_screen(const enum clear_option option) {
+	printf("\033[%dJ", option);
+}
+
+void move_cursor(int row, int col) {
+	printf("\033[%d;%dH", row, col);
+}
+
 void chg_display_title(void) {
+	clear_screen(FULL_SCREEN);
+	move_cursor(1, 1);
 	puts("【色当てゲーム】");
 	puts("ゲームをはじめてください");
 }
