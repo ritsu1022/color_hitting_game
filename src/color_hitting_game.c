@@ -245,7 +245,7 @@ enum chg_game_state chg_check_result(const char tx[]) {
 	}
 }
 
-enum chg_game_state chg_play_turn(void) {
+enum chg_game_state chg_play_turn(const int turn) {
 	char tx[QSIZE+10];
 	const int size = sizeof(tx);
 	while(true) {
@@ -263,6 +263,9 @@ enum chg_game_state chg_play_turn(void) {
 			puts("再入力してください");
 		}
 	}
+	move_cursor(turn + 2, 1);
+	clear_screen(AFTER_CURSOR);
+	printf("%2d回: ", turn + 1);
 	chg_display_trial(tx);
 	return chg_check_result(tx);
 }
@@ -273,7 +276,8 @@ void chg_display_win_or_lose(enum chg_game_state game_state) {
 	} else {
 		puts("残念！出題者の勝ちです。");
 	}
-	chg_display_question();
+	fputs("問題: ", stdout);
+	chg_display_trial(qx);
 }
 
 void color_hitting_game(void) {
@@ -284,9 +288,9 @@ void color_hitting_game(void) {
 	chg_make_question();
 	const int max_turns = 10;
 	for(int turn = 0; turn < max_turns; turn++) {
-		printf("予想を入力してください。%d 回目\n", turn + 1);
+		printf("予想を入力してください。\n%2d 回目>>", turn + 1);
 
-		game_state = chg_play_turn();
+		game_state = chg_play_turn(turn);
 		if(game_state == chg_state_PLAYER_WIN
 			|| game_state == chg_state_PLAYER_LOSE) {
 			break;
