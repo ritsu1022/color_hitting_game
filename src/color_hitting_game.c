@@ -278,6 +278,10 @@ void chg_display_win_or_lose(enum chg_game_state game_state) {
 	}
 	fputs("問題: ", stdout);
 	chg_display_trial(qx);
+
+	puts("\nエンターキーでメニューに戻ります。");
+	while (getchar() != '\n') {
+	}
 }
 
 void color_hitting_game(void) {
