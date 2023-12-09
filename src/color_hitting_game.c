@@ -201,7 +201,7 @@ bool chg_input_is_quit(const char* buf) {
 	}
 }
 
-void chg_input_answer(char buf[], int size) {
+void chg_get_line(char buf[], int size) {
 	char* cr;
 
 	fgets(buf, size, stdin);
@@ -249,7 +249,7 @@ enum chg_game_state chg_play_turn(const int turn) {
 	char tx[QSIZE+10];
 	const int size = sizeof(tx);
 	while(true) {
-		chg_input_answer(tx, size);
+		chg_get_line(tx, size);
 
 		if (chg_input_is_quit(tx)) {
 			return chg_state_PLAYER_LOSE;
@@ -308,13 +308,22 @@ void chg_display_operation_menu(void) {
 }
 
 void chg_select_operation(void) {
+	char opx[4];
+	const int size = sizeof(opx);
 	chg_display_title();
 	chg_display_operation_menu();
+	chg_get_line(opx, size);
+	const char op = toupper(opx[0]);
+	if( op == 'Q') {
+		puts("ゲームを終了しました。");
+		return;
+	} else if ( op == 'N') {
+		color_hitting_game();
+	}
 }
 
 int main(void) {
 	setvbuf(stdout, NULL, _IONBF, 0);
-	// color_hitting_game();
 	chg_select_operation();
 	return EXIT_SUCCESS;
 }
