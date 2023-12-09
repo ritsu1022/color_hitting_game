@@ -310,15 +310,17 @@ void chg_display_operation_menu(void) {
 void chg_select_operation(void) {
 	char opx[4];
 	const int size = sizeof(opx);
-	chg_display_title();
-	chg_display_operation_menu();
-	chg_get_line(opx, size);
-	const char op = toupper(opx[0]);
-	if( op == 'Q') {
-		puts("ゲームを終了しました。");
-		return;
-	} else if ( op == 'N') {
-		color_hitting_game();
+	while (true) {
+		chg_display_title();
+		chg_display_operation_menu();
+		chg_get_line(opx, size);
+		const char op = toupper(opx[0]);
+		if( op == 'Q') {
+			puts("ゲームを終了しました。");
+			return;
+		} else if ( op == 'N') {
+			color_hitting_game();
+		}
 	}
 }
 
