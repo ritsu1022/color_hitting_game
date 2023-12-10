@@ -300,7 +300,8 @@ void color_hitting_game(void) {
 	chg_display_title();
 	chg_make_question();
 	const int max_turns = 10;
-	for(int turn = 0; turn < max_turns; turn++) {
+	int turn;
+	for(turn = 0; turn < max_turns; turn++) {
 		printf("予想を入力してください。\n%2d 回目>>", turn + 1);
 
 		game_state = chg_play_turn(turn);
@@ -311,6 +312,12 @@ void color_hitting_game(void) {
 	}
 
 	chg_display_win_or_lose(game_state);
+	if (game_state == chg_state_PLAYER_WIN) {
+		player_score += winning_point;
+		player_score += chg_calc_option_point(turn);
+	} else {
+		player_score += losing_point;
+	}
 	return;
 }
 
@@ -323,6 +330,8 @@ void chg_display_operation_menu(void) {
 void chg_select_operation(void) {
 	char opx[4];
 	const int size = sizeof(opx);
+	player_score = initial_score;
+
 	while (true) {
 		chg_display_title();
 		chg_display_operation_menu();
@@ -333,6 +342,10 @@ void chg_select_operation(void) {
 			return;
 		} else if ( op == 'N') {
 			color_hitting_game();
+			if (player_score <= 0) {
+				puts("ゲームオーバーです！！");
+				return;
+			}
 		}
 	}
 }
