@@ -21,6 +21,15 @@ static char qx[QSIZE];
 static const char qseeds[] = { 'R', 'G', 'B', 'Y', 'M', 'C' };
 static const int num_of_colors = sizeof(qseeds)/ sizeof(qseeds[0]);
 
+static const int initial_score = 200;
+static const int winning_point = 100;
+static const int losing_point = -100;
+static int player_score;
+
+int chg_calc_option_point(const int turn) {
+	return 100 - (turn * 10);
+}
+
 char get_trial_char(void) {
 	char ch;
 	for (;;) {
@@ -55,7 +64,7 @@ void move_cursor(int row, int col) {
 void chg_display_title(void) {
 	clear_screen(FULL_SCREEN);
 	move_cursor(1, 1);
-	puts("【色当てゲーム】");
+	printf("【色当てゲーム】 score: %d\n", player_score);
 	puts("ゲームをはじめてください");
 }
 
