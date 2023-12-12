@@ -15,6 +15,8 @@
 #include <ctype.h>
 #include <time.h>
 
+#include "csi.h"
+
 #define QSIZE 4
 static char qx[QSIZE];
 
@@ -47,18 +49,6 @@ void discard_inputs(void) {
 	for(; getchar() != '\n';) {
 		/* do nothing */
 	}
-}
-
-enum clear_option {
-	AFTER_CURSOR = 0, BEFORE_CURSOR = 1, FULL_SCREEN = 2
-};
-
-void clear_screen(const enum clear_option option) {
-	printf("\033[%dJ", option);
-}
-
-void move_cursor(int row, int col) {
-	printf("\033[%d;%dH", row, col);
 }
 
 void chg_display_title(void) {
