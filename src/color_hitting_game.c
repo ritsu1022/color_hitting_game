@@ -339,10 +339,3 @@ void chg_select_operation(void) {
 		}
 	}
 }
-
-int main(void) {
-	setvbuf(stdout, NULL, _IONBF, 0);
-	chg_select_operation();
-	return EXIT_SUCCESS;
-}
-
