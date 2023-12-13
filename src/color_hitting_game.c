@@ -313,8 +313,13 @@ void color_hitting_game(void) {
 
 void chg_display_operation_menu(void) {
 	puts("(N) 新しいゲームを始める");
+	puts("(S) ゲームのスコアを保存する");
 	puts("(Q) 終了");
 	printf("操作を選んでください：");
+}
+
+void chg_save_score(void) {
+	/* まだなにもしない */
 }
 
 void chg_select_operation(void) {
@@ -329,13 +334,23 @@ void chg_select_operation(void) {
 		const char op = toupper(opx[0]);
 		if( op == 'Q') {
 			puts("ゲームを終了しました。");
+			chg_save_score();
 			return;
 		} else if ( op == 'N') {
 			color_hitting_game();
 			if (player_score <= 0) {
 				puts("ゲームオーバーです！！");
+				player_score = 0;
+				chg_save_score();
 				return;
+			}
+		} else if ( op == 'S') {
+			chg_save_score();
+			puts("スコアを保存しました。");
+			puts("エンターキーでメニューに戻ります。");
+			while (getchar() != '\n') {
 			}
 		}
 	}
+	return;
 }
