@@ -15,7 +15,7 @@
 #include <ctype.h>
 #include <time.h>
 
-#include "csi.h"
+#include "color_hitting_game.h"
 
 #define QSIZE 4
 static char qx[QSIZE];
@@ -27,7 +27,7 @@ static const int initial_score = 200;
 static const int winning_point = 100;
 static const int losing_point = -100;
 static int player_score;
-static const char* score_file = "score.dat";
+char score_file[FNAME_MAX + 1];
 
 int chg_calc_option_point(const int turn) {
 	return 100 - (turn * 10);
