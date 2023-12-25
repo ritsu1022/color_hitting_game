@@ -27,6 +27,7 @@ static const int initial_score = 200;
 static const int winning_point = 100;
 static const int losing_point = -100;
 static int player_score;
+static const char* score_file = "score.dat";
 
 int chg_calc_option_point(const int turn) {
 	return 100 - (turn * 10);
@@ -319,7 +320,14 @@ void chg_display_operation_menu(void) {
 }
 
 void chg_save_score(void) {
-	/* まだなにもしない */
+	FILE* fp = fopen(score_file, "r+");
+	if (fp != NULL) {
+		fprintf(fp, "%d\n", player_score);
+		fclose(fp);
+	} else {
+		fputs("スコアファイルが開けませんでした。", stderr);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void chg_select_operation(void) {
