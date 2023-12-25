@@ -335,6 +335,9 @@ void chg_load_score(void) {
 	if (fp != NULL) {
 		fscanf(fp, "%d", &player_score);
 		fclose(fp);
+		if(player_score <= 0) {
+			player_score = initial_score;
+		}
 	} else {
 		fputs("スコアファイルが開けませんでした。", stderr);
 		exit(EXIT_FAILURE);
