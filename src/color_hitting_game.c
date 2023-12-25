@@ -331,7 +331,14 @@ void chg_save_score(void) {
 }
 
 void chg_load_score(void) {
-	player_score = initial_score;
+	FILE* fp = fopen(score_file, "r");
+	if (fp != NULL) {
+		fscanf(fp, "%d", &player_score);
+		fclose(fp);
+	} else {
+		fputs("スコアファイルが開けませんでした。", stderr);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void chg_select_operation(void) {
