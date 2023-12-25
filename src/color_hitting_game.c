@@ -330,10 +330,14 @@ void chg_save_score(void) {
 	}
 }
 
+void chg_load_score(void) {
+	player_score = initial_score;
+}
+
 void chg_select_operation(void) {
 	char opx[4];
 	const int size = sizeof(opx);
-	player_score = initial_score;
+	chg_load_score();
 
 	while (true) {
 		chg_display_title();
